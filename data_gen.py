@@ -17,10 +17,11 @@ if __name__ == '__main__':
     lines = int(parse_arg('lines', default='100'))
     out = parse_arg('out', default='out.txt')
     expr = parse_arg('expr', default='sum(X)')
-    lo, hi = map(int, re.findall('-?\d+', rg))
+    lo, hi = map(float, re.findall('-?\d+(?:\.\d*)?', rg))
+    print(lo, hi)
     with open(out, 'w') as f:
         for i in range(lines):
             X = gen_x(lo, hi)
             y = eval(expr)
             nums = append(X, [y])
-            f.write(' '.join(map(str, nums)) + '\n')
+            f.write(' '.join(map(str, nums)) + '\r\n')
