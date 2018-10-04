@@ -1,4 +1,4 @@
-#!/usr/local/python3
+#!/usr/local/bin/python3
 import sys
 from numpy import *
 import re
@@ -18,10 +18,10 @@ if __name__ == '__main__':
     out = parse_arg('out', default='out.txt')
     expr = parse_arg('expr', default='sum(X)')
     lo, hi = map(float, re.findall('-?\d+(?:\.\d*)?', rg))
-    print(lo, hi)
+    sep = parse_arg('sep', default=',')
     with open(out, 'w') as f:
         for i in range(lines):
             X = gen_x(lo, hi)
             y = eval(expr)
             nums = append(X, [y])
-            f.write(' '.join(map(str, nums)) + '\r\n')
+            f.write(sep.join(map(str, nums)) + '\r\n')
